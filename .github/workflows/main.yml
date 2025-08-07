@@ -1,0 +1,28 @@
+name: 'Banco Web - CI'
+
+on:
+  workflow_dispatch:
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    
+    env:
+      API_BASE_URL: 'http://localhost:3000'
+      PORT: 4000
+    
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        uses: npm install
+
+      - name: Initialize mock server
+        uses: npm run mock-server
+
+      - name: Initialize application server
+        uses: npm run server
+
+      - name: Execute tests
+        uses: npx cypress run
