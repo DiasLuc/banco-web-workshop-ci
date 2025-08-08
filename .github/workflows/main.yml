@@ -16,13 +16,13 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install dependencies
-        uses: npm install
+        run: npm install
 
       - name: Initialize mock server
-        uses: npm run mock-server
+        run: npm run mock-server
 
       - name: Initialize application server
-        uses: npm run server
+        run: npm run server
 
       - name: Execute tests
-        uses: npx cypress run
+        run: npx cypress run
